@@ -14,7 +14,7 @@ import javax.persistence.*;
 @SecondaryTable(name="Vessel", pkJoinColumns = @PrimaryKeyJoinColumn(name = "id"))
 public class ShipDetail {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -31,11 +31,11 @@ public class ShipDetail {
     private String name;
 
     @Column(name = "length", table = "Vessel")
-    private int length;
+    private double length;
 
     @Column(name = "width", table = "Vessel")
-    private int width;
+    private double width;
 
     @Column(name = "height", table = "Vessel")
-    private int height;
+    private double height;
 }
