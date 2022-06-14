@@ -50,6 +50,13 @@ public class ShipDetailController {
         return new ResponseEntity<>(savedShipDTO, HttpStatus.CREATED);
     }
 
+    @PutMapping(value = "/ship-details/{id}")
+    public ResponseEntity<ShipDetailDTO> updateShipDetail(@RequestBody ShipDetailDTO shipDetailDTO) throws ShipDetailsNotFoundException {
+        ShipDetail shipDetail = modelMapper.map(shipDetailDTO, ShipDetail.class);
+        ShipDetail updatedShipDetail = shipDetailService.updateShipDetail(shipDetail);
+        ShipDetailDTO updatedShipDetailDTO = modelMapper.map(updatedShipDetail, ShipDetailDTO.class);
+        return new ResponseEntity<>(updatedShipDetailDTO, HttpStatus.ACCEPTED);
+    }
     @DeleteMapping(value = "/ship-details/{id}")
     public ResponseEntity deleteShipDetail(@PathVariable(name = "id") int id) {
         shipDetailService.deleteShipDetail(id);

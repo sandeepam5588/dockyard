@@ -44,4 +44,10 @@ public class ShipDetailServiceImpl implements ShipDetailService{
     public void deleteShipDetail(int id) {
         shipRepo.deleteById(id);
     }
+
+    @Override
+    public ShipDetail updateShipDetail(ShipDetail shipDetail) throws ShipDetailsNotFoundException {
+        ShipDetail retrievedShipDetail = shipRepo.findById(shipDetail.getId()).orElseThrow(()-> new ShipDetailsNotFoundException(shipDetail.getId()));
+        return addShipDetails(retrievedShipDetail);
+    }
 }
