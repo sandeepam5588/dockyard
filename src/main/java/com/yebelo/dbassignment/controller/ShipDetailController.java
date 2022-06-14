@@ -20,12 +20,11 @@ public class ShipDetailController {
     @Autowired
     private ModelMapper modelMapper;
     @GetMapping(value = "/ship-details/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ShipDetail> getShipDetail(@PathVariable(name = "id") int id){
+    public ResponseEntity<ShipDetailDTO> getShipDetail(@PathVariable(name = "id") int id){
         ShipDetail shipDetail = shipDetailService.findShip(id);
         if(shipDetail != null){
-            //ShipDetailDTO shipDTO = modelMapper.map(shipDetail, ShipDetailDTO.class);
-            //return new ResponseEntity<>(shipDTO, HttpStatus.OK);
-            return new ResponseEntity<>(shipDetail, HttpStatus.OK);
+            ShipDetailDTO shipDTO = modelMapper.map(shipDetail, ShipDetailDTO.class);
+            return new ResponseEntity<>(shipDTO, HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
