@@ -15,5 +15,5 @@ public interface ShipDetailService {
 
     void deleteShipDetail(int id);
 
-    ShipDetail updateShipDetail(ShipDetail shipDetail) throws ShipDetailsNotFoundException;
+    ShipDetail updateShipDetail(ShipDetail shipDetail, int id) throws ShipDetailsNotFoundException;
 }

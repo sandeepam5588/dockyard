@@ -46,8 +46,15 @@ public class ShipDetailServiceImpl implements ShipDetailService{
     }
 
     @Override
-    public ShipDetail updateShipDetail(ShipDetail shipDetail) throws ShipDetailsNotFoundException {
-        ShipDetail retrievedShipDetail = shipRepo.findById(shipDetail.getId()).orElseThrow(()-> new ShipDetailsNotFoundException(shipDetail.getId()));
+    public ShipDetail updateShipDetail(ShipDetail shipDetail, int id) throws ShipDetailsNotFoundException {
+        ShipDetail retrievedShipDetail = shipRepo.findById(id).orElseThrow(()-> new ShipDetailsNotFoundException(id));
+        retrievedShipDetail.setName(shipDetail.getName());
+        retrievedShipDetail.setLength(shipDetail.getLength());
+        retrievedShipDetail.setWidth(shipDetail.getWidth());
+        retrievedShipDetail.setHeight(shipDetail.getHeight());
+        retrievedShipDetail.setEntryPoint(shipDetail.getEntryPoint());
+        retrievedShipDetail.setExitPoint(shipDetail.getExitPoint());
+        retrievedShipDetail.setStatus(shipDetail.getStatus());
         return addShipDetails(retrievedShipDetail);
     }
 }
